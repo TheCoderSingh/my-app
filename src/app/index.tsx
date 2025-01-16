@@ -1,11 +1,12 @@
 import { Text, View } from 'react-native';
 import '../../global.css';
-import { store } from './store/store';
-import { Provider } from 'react-redux';
+import { Redirect } from 'expo-router';
+import React from 'react';
 
 export default function Index() {
   return (
-    <Provider store={store}>
+    <React.Fragment>
+      <Redirect href={'/(tabs)/home'} />
       <View
         style={{
           flex: 1,
@@ -17,6 +18,6 @@ export default function Index() {
           Edit app/index.tsx to edit this screen.
         </Text>
       </View>
-    </Provider>
+    </React.Fragment>
   );
 }
