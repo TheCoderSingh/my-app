@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { setSelectedOption } from './PickerSlice';
+import { setSelectedOption } from './pickerSlice';
 
 interface PickerProps {
   textColor: string;

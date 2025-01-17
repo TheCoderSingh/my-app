@@ -1,6 +1,6 @@
 import { SafeAreaView, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import MatchHeader from '../features/matchHeader/matchHeader';
+import MatchHeader from '../features/match-header/MatchHeader';
 
 const home = () => {
   return (

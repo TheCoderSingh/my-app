@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import pickerReducer from '../features/picker/PickerSlice';
+import pickerReducer from '../features/picker/pickerSlice';
 
 export const store = configureStore({
   reducer: pickerReducer,
