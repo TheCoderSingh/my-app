@@ -18,13 +18,13 @@ const MatchHeader = () => {
 
   return (
     <View
-      className="h-[96px] bg-white flex flex-row justify-center py-8 rounded-b-[30px] gap-x-6"
+      className="h-[60px] bg-white flex flex-row justify-center py-4 rounded-b-[30px] gap-x-6"
       style={{
         boxShadow: `0px 20px 38px ${shadowColors[selectedOption]}`, // Change according to current mode
       }}
     >
       <View>
-        <Text className="text-xl text-center font-body tracking-[-1px]">
+        <Text className="text-xl text-center font-body tracking-[-1px] py-1">
           Match with
         </Text>
       </View>
