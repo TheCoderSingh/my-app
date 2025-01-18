@@ -10,6 +10,7 @@ import MatchHeader from '../features/match-header/MatchHeader';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { Link } from 'expo-router';
+import LinkBar from '../features/link-bar/LinkBar';
 
 const home = () => {
   const selectedOption = useSelector(
@@ -100,24 +101,10 @@ const home = () => {
           {/* Portfolio */}
           <View className="flex flex-row justify-between items-center mt-3">
             <Text className="font-body">Portfolio:</Text>
-            <View
-              className="w-[300px] bg-white px-4 rounded-full h-[24px] py-1"
-              style={{
-                boxShadow: '0px 0px 7px 0px #00000040',
-              }}
-            >
-              <Link href="https://www.johnsmithux.com" target="_blank">
-                <View className="flex flex-row justify-between items-center w-full">
-                  <Text className="color-[#828282] font-body text-sm">
-                    johnsmithux.com
-                  </Text>
-                  <Image
-                    className="w-3 h-3"
-                    source={require('../../../assets/images/image.png')}
-                  />
-                </View>
-              </Link>
-            </View>
+            <LinkBar
+              href="https://www.johnsmithux.com"
+              text="johnsmithux.com"
+            />
           </View>
 
           {/* Skills */}
@@ -166,49 +153,17 @@ const home = () => {
           <View className="mt-8 px-6">
             <View className="flex flex-row items-center justify-center gap-3">
               <Image source={require('../../../assets/images/linkedin.png')} />
-              <View
-                className="w-full bg-white px-4 rounded-full h-[24px] py-1"
-                style={{
-                  boxShadow: '0px 0px 7px 0px #00000040',
-                }}
-              >
-                <Link
-                  href="https://www.johnsmithux.com"
-                  target="_blank"
-                  className="flex flex-row justify-between"
-                >
-                  <View className="flex flex-row justify-between items-center w-full">
-                    <Text className="color-gray-400  font-body text-sm">
-                      github.com/jsssmith
-                    </Text>
-                    <Image
-                      className="w-3 h-3"
-                      source={require('../../../assets/images/image.png')}
-                    />
-                  </View>
-                </Link>
-              </View>
+              <LinkBar
+                href="https://linkedin.com/in/john-smith"
+                text="linkedin.com/in/john-smith"
+              />
             </View>
             <View className="flex flex-row items-center justify-center gap-3 mt-4">
               <Image source={require('../../../assets/images/git.png')} />
-              <View
-                className="w-full bg-white px-4 rounded-full h-[24px] py-1"
-                style={{
-                  boxShadow: '0px 0px 7px 0px #00000040',
-                }}
-              >
-                <Link href="https://www.johnsmithux.com" target="_blank">
-                  <View className="flex flex-row justify-between items-center w-full">
-                    <Text className="color-gray-400  font-body text-sm">
-                      github.com/jsssmith
-                    </Text>
-                    <Image
-                      className="w-3 h-3"
-                      source={require('../../../assets/images/image.png')}
-                    />
-                  </View>
-                </Link>
-              </View>
+              <LinkBar
+                href="https://github.com/jsssmith"
+                text="github.com/jsssmith"
+              />
             </View>
           </View>
 
