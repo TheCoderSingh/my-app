@@ -82,7 +82,7 @@ const TabsLayout = () => {
               }}
             >
               <Image
-                source={require('../../../assets/images/home.png')}
+                source={require('../../../assets/images/events.png')}
                 style={{
                   width: 24,
                   height: 24,
