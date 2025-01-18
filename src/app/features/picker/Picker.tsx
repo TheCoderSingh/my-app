@@ -29,9 +29,9 @@ const Picker = ({ textColor, options }: PickerProps) => {
     <View>
       <TouchableOpacity
         onPress={togglePicker}
-        className="mb-2 border border-primary-one rounded-xl py-2 px-1 flex-row justify-between items-center h-[38px]"
+        className="mb-2 border border-primary-one rounded-xl py-1 px-1 flex-row justify-between items-center h-[30px]"
       >
-        <Text className="font-body pl-4 text-xl" style={{ color: textColor }}>
+        <Text className="font-body pl-4 text-lg" style={{ color: textColor }}>
           {selectedOption}
         </Text>
         <Image
@@ -47,7 +47,7 @@ const Picker = ({ textColor, options }: PickerProps) => {
               <TouchableOpacity
                 key={option}
                 onPress={() => handleOptionSelect(option)}
-                className="mb-2 border border-primary-one rounded-xl p-2 bg-white"
+                className="mb-2 border border-primary-one rounded-xl p-2 bg-white z-10"
               >
                 <Text
                   className="font-body text-center"
