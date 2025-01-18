@@ -109,7 +109,7 @@ const TabsLayout = () => {
               }}
             >
               <Image
-                source={require('../../../assets/images/home.png')}
+                source={require('../../../assets/images/profile.png')}
                 style={{
                   width: 24,
                   height: 24,
@@ -136,7 +136,7 @@ const TabsLayout = () => {
               }}
             >
               <Image
-                source={require('../../../assets/images/home.png')}
+                source={require('../../../assets/images/settings.png')}
                 style={{
                   width: 24,
                   height: 24,
