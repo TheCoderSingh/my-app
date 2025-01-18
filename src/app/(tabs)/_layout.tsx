@@ -1,5 +1,5 @@
 import { Tabs } from 'expo-router';
-import { Image, Text, View } from 'react-native';
+import { Image, View } from 'react-native';
 
 const TabsLayout = () => {
   return (
@@ -55,7 +55,7 @@ const TabsLayout = () => {
               }}
             >
               <Image
-                source={require('../../../assets/images/home.png')}
+                source={require('../../../assets/images/matches.png')}
                 style={{
                   width: 24,
                   height: 24,

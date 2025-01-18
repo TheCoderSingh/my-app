@@ -1,15 +1,8 @@
-import {
-  Image,
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Image, SafeAreaView, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import MatchHeader from '../features/match-header/MatchHeader';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
-import { Link } from 'expo-router';
 import LinkBar from '../features/link-bar/LinkBar';
 import RoundButton from '../features/round-button/RoundButton';
 
