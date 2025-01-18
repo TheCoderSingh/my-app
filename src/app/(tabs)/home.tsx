@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { Link } from 'expo-router';
 import LinkBar from '../features/link-bar/LinkBar';
+import RoundButton from '../features/round-button/RoundButton';
 
 const home = () => {
   const selectedOption = useSelector(
@@ -171,22 +172,12 @@ const home = () => {
           <View>
             {/* Cross and tick buttons go here */}
             <View className="flex flex-row justify-center mt-8 gap-x-10">
-              <TouchableOpacity
-                className="bg-white rounded-full w-[50px] h-[50px] flex items-center justify-center"
-                style={{
-                  boxShadow: '2px 5px 8.5px 0px #00000052',
-                }}
-              >
-                <Image source={require('../../../assets/images/close.png')} />
-              </TouchableOpacity>
-              <TouchableOpacity
-                className="bg-white rounded-full w-[50px] h-[50px] flex items-center justify-center"
-                style={{
-                  boxShadow: '2px 5px 8.5px 0px #00000052',
-                }}
-              >
-                <Image source={require('../../../assets/images/check.png')} />
-              </TouchableOpacity>
+              <RoundButton
+                imgSrc={require('../../../assets/images/close.png')}
+              />
+              <RoundButton
+                imgSrc={require('../../../assets/images/check.png')}
+              />
             </View>
           </View>
         </View>
