@@ -3,6 +3,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { setSelectedOption } from './pickerSlice';
+import images from '../../../constants/images';
 
 interface PickerProps {
   textColor: string;
@@ -35,7 +36,7 @@ const Picker = ({ textColor, options }: PickerProps) => {
           {selectedOption}
         </Text>
         <Image
-          source={require('../../../../assets/images/arrowDown.png')}
+          source={images.arrowDown}
           style={{ width: 12, height: 7 }}
           className="mr-2"
         />

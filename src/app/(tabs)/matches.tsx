@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { Text, SafeAreaView, View } from 'react-native';
 import MatchCard from '../features/match-card/MatchCard';
+import images from '../../constants/images';
 
 const matches = () => {
   return (
@@ -20,35 +21,35 @@ const matches = () => {
           <Text className="font-body text-3xl">Your Matches</Text>
           <MatchCard
             type="Mentor"
-            imgSrc={require('../../../assets/images/xd.png')}
+            imgSrc={images.xd}
             name="John Smith"
             notification="Sent 1h ago"
             className="mt-8"
           />
           <MatchCard
             type="Hackathon Partner"
-            imgSrc={require('../../../assets/images/xd.png')}
+            imgSrc={images.xd}
             name="John Smith"
             notification="Sent 1h ago"
             className="mt-8"
           />
           <MatchCard
             type="Hackathon Partner"
-            imgSrc={require('../../../assets/images/xd.png')}
+            imgSrc={images.xd}
             name="John Smith"
             notification="Sent 1h ago"
             className="mt-8"
           />
           <MatchCard
             type="Mentee"
-            imgSrc={require('../../../assets/images/xd.png')}
+            imgSrc={images.xd}
             name="John Smith"
             notification="Sent 1h ago"
             className="mt-8"
           />
           <MatchCard
             type="Industry Connection"
-            imgSrc={require('../../../assets/images/xd.png')}
+            imgSrc={images.xd}
             name="John Smith"
             notification="Sent 1h ago"
             className="mt-8"
