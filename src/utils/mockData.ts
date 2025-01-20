@@ -3,8 +3,8 @@ export const users = [
 ];
 
 export const options = [
-  'Mentors',
-  'Mentees',
-  'Industry Connections',
-  'Hackathon Partners',
+  'Mentor',
+  'Mentee',
+  'Industry Connection',
+  'Hackathon Partner',
 ];

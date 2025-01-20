@@ -9,23 +9,24 @@ const MatchHeader = () => {
     (state: RootState) => state.selectedOption
   );
 
-  const shadowColors: Record<string, string> = {
-    Mentors: '#E1E8D0',
-    Mentees: '#FFE5D2',
-    'Industry Connections': '#F9E7BE',
-    'Hackathon Partners': '#D2E2E4',
-  };
-
   return (
     <View
       className="h-[60px] bg-white flex flex-row justify-center py-4 rounded-b-[30px] gap-x-6"
       style={{
-        boxShadow: `0px 20px 38px ${shadowColors[selectedOption]}`, // Change according to current mode
+        boxShadow: `0px 20px 38px ${
+          selectedOption === 'Mentor'
+            ? '#779C1966'
+            : selectedOption === 'Mentee'
+              ? '#EB7D0766'
+              : selectedOption === 'Hackathon Partner'
+                ? '#41ACBA66'
+                : '#DDB23F66'
+        }`,
       }}
     >
       <View>
         <Text className="text-xl text-center font-body tracking-[-1px] py-1">
-          Match with
+          Match with a
         </Text>
       </View>
       <View className="w-[250px]">

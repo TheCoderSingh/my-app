@@ -16,18 +16,11 @@ const MatchCard = ({
   notification,
   className,
 }: MatchCardProps) => {
-  const shadowColors: Record<string, string> = {
-    Mentor: '#779C1966',
-    Mentee: '#EB7D0766',
-    'Industry Connection': '#DDB23F66',
-    'Hackathon Partner': '#41ACBA66',
-  };
-
   return (
     <View
       className={`flex flex-row justify-between p-4 rounded-2xl ${className}`}
       style={{
-        boxShadow: `0px 0px 20px 0px ${shadowColors[type]}`,
+        boxShadow: `0px 0px 20px 0px ${type === 'Mentor' ? '#779C1966' : type === 'Mentee' ? '#EB7D0766' : type === 'Hackathon Partner' ? '#41ACBA66' : '#DDB23F66'}`,
       }}
     >
       <View>
