@@ -1,6 +1,7 @@
 import { Link } from 'expo-router';
 import { View, Text, Image } from 'react-native';
 import type { LinkProps } from 'expo-router';
+import images from '../../../constants/images';
 
 interface LinkBarProps {
   href: LinkProps['href'];
@@ -18,10 +19,7 @@ const LinkBar = ({ href, text }: LinkBarProps) => {
       <Link href={href} target="_blank">
         <View className="flex flex-row justify-between items-center w-full">
           <Text className="color-[#828282] font-body text-sm">{text}</Text>
-          <Image
-            className="w-3 h-3"
-            source={require('../../../../assets/images/linkArrow.png')}
-          />
+          <Image className="w-3 h-3" source={images.linkArrow} />
         </View>
       </Link>
     </View>

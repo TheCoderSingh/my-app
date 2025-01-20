@@ -1,5 +1,6 @@
 import { Tabs } from 'expo-router';
 import { Image, View } from 'react-native';
+import images from '../../constants/images';
 
 const TabsLayout = () => {
   return (
@@ -28,7 +29,7 @@ const TabsLayout = () => {
               }}
             >
               <Image
-                source={require('../../../assets/images/home.png')}
+                source={images.home}
                 style={{
                   width: 24,
                   height: 24,
@@ -55,7 +56,7 @@ const TabsLayout = () => {
               }}
             >
               <Image
-                source={require('../../../assets/images/matches.png')}
+                source={images.matches}
                 style={{
                   width: 24,
                   height: 24,
@@ -82,7 +83,7 @@ const TabsLayout = () => {
               }}
             >
               <Image
-                source={require('../../../assets/images/events.png')}
+                source={images.events}
                 style={{
                   width: 24,
                   height: 24,
@@ -109,7 +110,7 @@ const TabsLayout = () => {
               }}
             >
               <Image
-                source={require('../../../assets/images/profile.png')}
+                source={images.profile}
                 style={{
                   width: 24,
                   height: 24,
@@ -136,7 +137,7 @@ const TabsLayout = () => {
               }}
             >
               <Image
-                source={require('../../../assets/images/settings.png')}
+                source={images.settings}
                 style={{
                   width: 24,
                   height: 24,

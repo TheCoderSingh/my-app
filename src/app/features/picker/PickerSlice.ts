@@ -5,7 +5,7 @@ interface PickerState {
 }
 
 const initialState: PickerState = {
-  selectedOption: 'Mentors',
+  selectedOption: 'Mentor',
 };
 
 const pickerSlice = createSlice({

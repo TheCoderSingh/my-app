@@ -1,10 +1,7 @@
 import { Image, SafeAreaView, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import MatchHeader from '../features/match-header/MatchHeader';
-import { useSelector } from 'react-redux';
-import { RootState } from '../store/store';
 import LinkBar from '../features/link-bar/LinkBar';
-import RoundButton from '../features/round-button/RoundButton';
+import images from '@/src/constants/images';
 
 const profile = () => {
   return (
@@ -43,25 +40,23 @@ const profile = () => {
           {/* Details */}
           <View>
             <View className="flex flex-row items-center gap-3">
-              <Image source={require('../../../assets/images/briefcase.png')} />
+              <Image source={images.briefcase} />
               <Text className="font-body text-sm">
                 Experience Designer at Electronic Arts
               </Text>
             </View>
             <View className="flex flex-row items-center gap-3 mt-2">
-              <Image source={require('../../../assets/images/study.png')} />
+              <Image source={images.study} />
               <Text className="font-body text-sm">
                 Bachelor of Communications at UBC
               </Text>
             </View>
             <View className="flex flex-row items-center gap-3 mt-2">
-              <Image source={require('../../../assets/images/location.png')} />
+              <Image source={images.location} />
               <Text className="font-body text-sm">Langley, BC</Text>
             </View>
             <View className="flex flex-row items-center gap-2 mt-2">
-              <Image
-                source={require('../../../assets/images/categories.png')}
-              />
+              <Image source={images.categories} />
               <Text className="font-body text-sm bg-[#73942033] px-2 py-2 rounded-xl">
                 Design
               </Text>
@@ -101,35 +96,19 @@ const profile = () => {
               {/* Skills with icons go here */}
               <View className="flex flex-row justify-center gap-x-8">
                 <View className="flex flex-col items-center">
-                  <Image
-                    source={require('../../../assets/images/figma.png')}
-                    height={55}
-                    width={55}
-                  />
+                  <Image source={images.figma} height={55} width={55} />
                   <Text className="font-body text-sm mt-2">Figma</Text>
                 </View>
                 <View className="flex flex-col items-center">
-                  <Image
-                    source={require('../../../assets/images/usertesting.png')}
-                    height={55}
-                    width={55}
-                  />
+                  <Image source={images.usertesting} height={55} width={55} />
                   <Text className="font-body text-sm mt-2">UserTesting</Text>
                 </View>
                 <View className="flex flex-col items-center">
-                  <Image
-                    source={require('../../../assets/images/xd.png')}
-                    height={55}
-                    width={55}
-                  />
+                  <Image source={images.xd} height={55} width={55} />
                   <Text className="font-body text-sm mt-2">Adobe XD</Text>
                 </View>
                 <View className="flex flex-col items-center">
-                  <Image
-                    source={require('../../../assets/images/github.png')}
-                    height={55}
-                    width={55}
-                  />
+                  <Image source={images.github} height={55} width={55} />
                   <Text className="font-body text-sm mt-2">GitHub</Text>
                 </View>
               </View>
@@ -139,14 +118,14 @@ const profile = () => {
           {/* Contact */}
           <View className="mt-8 px-6">
             <View className="flex flex-row items-center justify-center gap-3">
-              <Image source={require('../../../assets/images/linkedin.png')} />
+              <Image source={images.linkedin} />
               <LinkBar
                 href="https://linkedin.com/in/john-smith"
                 text="linkedin.com/in/john-smith"
               />
             </View>
             <View className="flex flex-row items-center justify-center gap-3 mt-4">
-              <Image source={require('../../../assets/images/git.png')} />
+              <Image source={images.git} />
               <LinkBar
                 href="https://github.com/jsssmith"
                 text="github.com/jsssmith"
