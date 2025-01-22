@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { setSelectedOption } from './pickerSlice';
+import { setSelectedOption } from './PickerSlice';
 import images from '../../../constants/images';
 
 interface PickerProps {
