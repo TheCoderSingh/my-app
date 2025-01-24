@@ -2,6 +2,14 @@ import { Image, View, Text } from 'react-native';
 import LinkBar from '../../features/link-bar/LinkBar';
 import RoundButton from '../../features/round-button/RoundButton';
 import images from '../../../constants/images';
+import {
+  Education,
+  Industry,
+  Location,
+  MatchNo,
+  MatchYes,
+  Work,
+} from '@/src/constants/icons';
 
 interface User {
   type: string;
@@ -33,23 +41,23 @@ const Match = ({ user }: { user: User }) => {
       {/* Details */}
       <View>
         <View className="flex flex-row items-center gap-3">
-          <Image source={images.briefcase} />
+          <Work width={20} height={20} />
           <Text className="font-body text-sm">
             Experience Designer at Electronic Arts
           </Text>
         </View>
         <View className="flex flex-row items-center gap-3 mt-2">
-          <Image source={images.study} />
+          <Education width={20} height={20} />
           <Text className="font-body text-sm">
             Bachelor of Communications at UBC
           </Text>
         </View>
         <View className="flex flex-row items-center gap-3 mt-2">
-          <Image source={images.location} />
+          <Location width={20} height={20} />
           <Text className="font-body text-sm">Langley, BC</Text>
         </View>
         <View className="flex flex-row items-center gap-2 mt-2">
-          <Image source={images.categories} />
+          <Industry width={20} height={20} />
           <Text className="font-body text-sm bg-[#73942033] px-2 py-2 rounded-xl">
             Design
           </Text>
@@ -127,8 +135,8 @@ const Match = ({ user }: { user: User }) => {
       <View>
         {/* Cross and tick buttons go here */}
         <View className="flex flex-row justify-center mt-8 gap-x-10">
-          <RoundButton imgSrc={images.close} />
-          <RoundButton imgSrc={images.check} />
+          <RoundButton type="match-no" />
+          <RoundButton type="match-yes" />
         </View>
       </View>
     </View>

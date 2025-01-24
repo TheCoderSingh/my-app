@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { setSelectedOption } from './PickerSlice';
-import images from '../../../constants/images';
+import { ArrowDown } from '@/src/constants/icons';
 
 interface PickerProps {
   textColor: string;
@@ -35,11 +35,7 @@ const Picker = ({ textColor, options }: PickerProps) => {
         <Text className="font-body pl-4 text-lg" style={{ color: textColor }}>
           {selectedOption}
         </Text>
-        <Image
-          source={images.arrowDown}
-          style={{ width: 12, height: 7 }}
-          className="mr-2"
-        />
+        <ArrowDown />
       </TouchableOpacity>
       {isOpen &&
         options.map(
