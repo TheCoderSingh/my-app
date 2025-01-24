@@ -2,6 +2,7 @@ import { Image, SafeAreaView, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import LinkBar from '../features/link-bar/LinkBar';
 import images from '@/src/constants/images';
+import { Education, Industry, Location, Work } from '@/src/constants/icons';
 
 const profile = () => {
   return (
@@ -40,23 +41,23 @@ const profile = () => {
           {/* Details */}
           <View>
             <View className="flex flex-row items-center gap-3">
-              <Image source={images.briefcase} />
+              <Work width={20} height={20} />
               <Text className="font-body text-sm">
                 Experience Designer at Electronic Arts
               </Text>
             </View>
             <View className="flex flex-row items-center gap-3 mt-2">
-              <Image source={images.study} />
+              <Education width={20} height={20} />
               <Text className="font-body text-sm">
                 Bachelor of Communications at UBC
               </Text>
             </View>
             <View className="flex flex-row items-center gap-3 mt-2">
-              <Image source={images.location} />
+              <Location width={20} height={20} />
               <Text className="font-body text-sm">Langley, BC</Text>
             </View>
             <View className="flex flex-row items-center gap-2 mt-2">
-              <Image source={images.categories} />
+              <Industry width={20} height={20} />
               <Text className="font-body text-sm bg-[#73942033] px-2 py-2 rounded-xl">
                 Design
               </Text>
