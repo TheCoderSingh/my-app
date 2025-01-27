@@ -41,7 +41,7 @@ export const users = [
     gender: 'Female',
     location: 'Seattle, USA',
     hometown: 'Portland, USA',
-    website: null,
+    website: 'test',
     role: 'Product Manager',
     currentTitle: 'Product Lead',
     previousTitles: ['Product Analyst', 'Junior PM'],
