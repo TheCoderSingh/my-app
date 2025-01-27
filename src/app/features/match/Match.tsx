@@ -10,6 +10,9 @@ import {
   MatchYes,
   Work,
 } from '@/src/constants/icons';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import { ExternalPathString } from 'expo-router';
 
 interface User {
   type: string;
@@ -17,6 +20,8 @@ interface User {
 }
 
 const Match = ({ user }: { user: User }) => {
+  const users = useSelector((state: RootState) => state.usersReducer.users);
+
   return (
     <View>
       {/* Name and picture */}
@@ -25,7 +30,7 @@ const Match = ({ user }: { user: User }) => {
           <Text className="color-secondary-one font-heading text-lg uppercase">
             {user.type}
           </Text>
-          <Text className="font-heading text-4xl mt-1">{user.name}</Text>
+          <Text className="font-heading text-4xl mt-1">{users[0].name}</Text>
         </View>
         <View className="border-4 rounded-full border-secondary-one">
           <Image
@@ -43,18 +48,18 @@ const Match = ({ user }: { user: User }) => {
         <View className="flex flex-row items-center gap-3">
           <Work width={20} height={20} />
           <Text className="font-body text-sm">
-            Experience Designer at Electronic Arts
+            {users[0].currentTitle} at {users[0].currentCompany}
           </Text>
         </View>
         <View className="flex flex-row items-center gap-3 mt-2">
           <Education width={20} height={20} />
           <Text className="font-body text-sm">
-            Bachelor of Communications at UBC
+            {users[0].education[0].degree} at {users[0].education[0].school}
           </Text>
         </View>
         <View className="flex flex-row items-center gap-3 mt-2">
           <Location width={20} height={20} />
-          <Text className="font-body text-sm">Langley, BC</Text>
+          <Text className="font-body text-sm">{users[0].location}</Text>
         </View>
         <View className="flex flex-row items-center gap-2 mt-2">
           <Industry width={20} height={20} />
@@ -74,17 +79,17 @@ const Match = ({ user }: { user: User }) => {
       <View>
         <Text className="font-body text-xl mt-6">A little about me...</Text>
         <Text className="font-body mt-2 leading-6 tracking-tight">
-          I am an Experience Designer with with a decade long track record of
-          crafting intuitive, user-centered designs. I am enthusiastic about
-          mentoring the next generation of designers and to help students thrive
-          in the dynamic world of design.
+          {users[0].bio}
         </Text>
       </View>
 
       {/* Portfolio */}
       <View className="flex flex-row justify-between items-center mt-3">
         <Text className="font-body">Portfolio:</Text>
-        <LinkBar href="https://www.johnsmithux.com" text="johnsmithux.com" />
+        <LinkBar
+          href={users[0].website as ExternalPathString}
+          text={users[0].website || ''}
+        />
       </View>
 
       {/* Skills */}
@@ -133,7 +138,6 @@ const Match = ({ user }: { user: User }) => {
 
       {/* Cross and tick buttons */}
       <View>
-        {/* Cross and tick buttons go here */}
         <View className="flex flex-row justify-center mt-8 gap-x-10">
           <RoundButton type="match-no" />
           <RoundButton type="match-yes" />

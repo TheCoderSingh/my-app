@@ -6,7 +6,7 @@ import { RootState } from '../../store/store';
 
 const MatchHeader = () => {
   const selectedOption = useSelector(
-    (state: RootState) => state.selectedOption
+    (state: RootState) => state.pickerReducer.selectedOption
   );
 
   return (
