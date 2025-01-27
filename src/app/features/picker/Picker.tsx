@@ -13,7 +13,7 @@ interface PickerProps {
 const Picker = ({ textColor, options }: PickerProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const selectedOption = useSelector(
-    (state: RootState) => state.selectedOption
+    (state: RootState) => state.pickerReducer.selectedOption
   );
   const dispatch = useDispatch();
 
