@@ -2,35 +2,20 @@ import { Image, View, Text } from 'react-native';
 import LinkBar from '../../features/link-bar/LinkBar';
 import RoundButton from '../../features/round-button/RoundButton';
 import images from '../../../constants/images';
-import {
-  Education,
-  Industry,
-  Location,
-  MatchNo,
-  MatchYes,
-  Work,
-} from '@/src/constants/icons';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import { Education, Industry, Location, Work } from '@/src/constants/icons';
 import { ExternalPathString } from 'expo-router';
-
-interface User {
-  type: string;
-  name: string;
-}
+import { User } from '../users/UsersSlice';
 
 const Match = ({ user }: { user: User }) => {
-  const users = useSelector((state: RootState) => state.usersReducer.users);
-
   return (
     <View>
       {/* Name and picture */}
       <View className="flex flex-row justify-between">
         <View>
           <Text className="color-secondary-one font-heading text-lg uppercase">
-            {user.type}
+            Temporarily Mentor
           </Text>
-          <Text className="font-heading text-4xl mt-1">{users[0].name}</Text>
+          <Text className="font-heading text-4xl mt-1">{user.name}</Text>
         </View>
         <View className="border-4 rounded-full border-secondary-one">
           <Image
@@ -48,29 +33,29 @@ const Match = ({ user }: { user: User }) => {
         <View className="flex flex-row items-center gap-3">
           <Work width={20} height={20} />
           <Text className="font-body text-sm">
-            {users[0].currentTitle} at {users[0].currentCompany}
+            {user.currentTitle} at {user.currentCompany}
           </Text>
         </View>
         <View className="flex flex-row items-center gap-3 mt-2">
           <Education width={20} height={20} />
           <Text className="font-body text-sm">
-            {users[0].education[0].degree} at {users[0].education[0].school}
+            {user.education[0].degree} at {user.education[0].school}
           </Text>
         </View>
         <View className="flex flex-row items-center gap-3 mt-2">
           <Location width={20} height={20} />
-          <Text className="font-body text-sm">{users[0].location}</Text>
+          <Text className="font-body text-sm">{user.location}</Text>
         </View>
         <View className="flex flex-row items-center gap-2 mt-2">
           <Industry width={20} height={20} />
           <Text className="font-body text-sm bg-[#73942033] px-2 py-2 rounded-xl">
-            Design
+            {user.industries[0]}
           </Text>
           <Text className="font-body text-sm bg-[#73942033] px-2 py-2 rounded-xl">
-            Video Games
+            {user.industries[1] || ''}
           </Text>
           <Text className="font-body text-sm bg-[#73942033] px-2 py-2 rounded-xl">
-            Software Development & IT
+            {user.industries[2] || ''}
           </Text>
         </View>
       </View>
@@ -79,7 +64,7 @@ const Match = ({ user }: { user: User }) => {
       <View>
         <Text className="font-body text-xl mt-6">A little about me...</Text>
         <Text className="font-body mt-2 leading-6 tracking-tight">
-          {users[0].bio}
+          {user.bio}
         </Text>
       </View>
 
@@ -87,8 +72,8 @@ const Match = ({ user }: { user: User }) => {
       <View className="flex flex-row justify-between items-center mt-3">
         <Text className="font-body">Portfolio:</Text>
         <LinkBar
-          href={users[0].website as ExternalPathString}
-          text={users[0].website || ''}
+          href={user.website as ExternalPathString}
+          text={user.website || ''}
         />
       </View>
 

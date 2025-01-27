@@ -1,6 +1,5 @@
 import { MatchNo, MatchYes } from '@/src/constants/icons';
 import { TouchableOpacity, Image } from 'react-native';
-import type { ImageProps } from 'react-native';
 
 interface RoundButtonProps {
   type: string;
