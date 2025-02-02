@@ -10,7 +10,20 @@ interface PickerProps {
   options: string[];
 }
 
-const Picker = ({ textColor, options }: PickerProps) => {
+/**
+ * Picker Component
+ *
+ * A custom dropdown picker component that allows users to select an option
+ * from a provided list. The selected option is managed using Redux for global state
+ * management. The picker toggles open and closed on user interaction.
+ *
+ * @param {Object} props - The props for the Picker component.
+ * @param {string} props.textColor - The color of the text displayed in the picker.
+ * @param {string[]} props.options - An array of string options to display in the dropdown.
+ *
+ * @returns {JSX.Element} The Picker component for selecting an option from a list.
+ */
+const Picker = ({ textColor, options }: PickerProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
   const selectedOption = useSelector(
     (state: RootState) => state.pickerReducer.selectedOption
