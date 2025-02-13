@@ -1,5 +1,17 @@
 import { Tabs } from 'expo-router';
-import { Image, Text, View } from 'react-native';
+import { View } from 'react-native';
+import {
+  EventsActive,
+  EventsInactive,
+  HomeActive,
+  HomeInactive,
+  MatchesActive,
+  MatchesInactive,
+  ProfileActive,
+  ProfileInactive,
+  SettingsActive,
+  SettingsInactive,
+} from '@/src/constants/icons';
 
 const TabsLayout = () => {
   return (
@@ -27,13 +39,7 @@ const TabsLayout = () => {
                 marginTop: focused ? -10 : -8,
               }}
             >
-              <Image
-                source={require('../../../assets/images/home.png')}
-                style={{
-                  width: 24,
-                  height: 24,
-                }}
-              />
+              {focused ? <HomeActive /> : <HomeInactive />}
             </View>
           ),
         }}
@@ -54,13 +60,7 @@ const TabsLayout = () => {
                 marginTop: focused ? -10 : -8,
               }}
             >
-              <Image
-                source={require('../../../assets/images/home.png')}
-                style={{
-                  width: 24,
-                  height: 24,
-                }}
-              />
+              {focused ? <MatchesActive /> : <MatchesInactive />}
             </View>
           ),
         }}
@@ -81,13 +81,7 @@ const TabsLayout = () => {
                 marginTop: focused ? -10 : -8,
               }}
             >
-              <Image
-                source={require('../../../assets/images/home.png')}
-                style={{
-                  width: 24,
-                  height: 24,
-                }}
-              />
+              {focused ? <EventsActive /> : <EventsInactive />}
             </View>
           ),
         }}
@@ -108,13 +102,7 @@ const TabsLayout = () => {
                 marginTop: focused ? -10 : -8,
               }}
             >
-              <Image
-                source={require('../../../assets/images/home.png')}
-                style={{
-                  width: 24,
-                  height: 24,
-                }}
-              />
+              {focused ? <ProfileActive /> : <ProfileInactive />}
             </View>
           ),
         }}
@@ -135,13 +123,7 @@ const TabsLayout = () => {
                 marginTop: focused ? -10 : -8,
               }}
             >
-              <Image
-                source={require('../../../assets/images/home.png')}
-                style={{
-                  width: 24,
-                  height: 24,
-                }}
-              />
+              {focused ? <SettingsActive /> : <SettingsInactive />}
             </View>
           ),
         }}

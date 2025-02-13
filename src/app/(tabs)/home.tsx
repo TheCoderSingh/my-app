@@ -1,25 +1,34 @@
-import { Text, SafeAreaView, View } from 'react-native';
+import { SafeAreaView, Text, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import MatchHeader from '../features/match-header/MatchHeader';
+import Match from '../features/match/Match';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 
 const home = () => {
+  const users = useSelector((state: RootState) => state.usersReducer.users);
+
   return (
-    <View className="bg-[#eb2] h-full">
+    <View>
+      {/* Status bar */}
       <View
-        className="h-[96px] bg-white flex flex-row justify-center py-8 rounded-b-[30px] "
         style={{
-          shadowColor: 'rgba(225, 232, 208, 1)',
-          shadowOffset: { width: 0, height: 5 },
-          shadowOpacity: 1,
-          shadowRadius: 38,
-          elevation: 5, // for Android
+          height: 48, // iOS typical status bar height is 44
+          backgroundColor: '#fff',
         }}
       >
-        <View>
-          <Text className="text-xl text-center font-body tracking-[-1px]">
-            Match with a:
-          </Text>
-        </View>
-        <View>{/* <Picker /> */}</View>
+        <StatusBar style="dark" />
       </View>
+
+      <SafeAreaView className="bg-[#FCFCFC] h-full">
+        {/* Header */}
+        <MatchHeader />
+
+        <View className="mt-8 px-6">
+          {/* TODO: Map over users and render a Match component for each */}
+          <Match user={users[0]} />
+        </View>
+      </SafeAreaView>
     </View>
   );
 };
