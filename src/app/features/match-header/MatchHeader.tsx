@@ -4,7 +4,17 @@ import { options } from '@/src/utils/mockData';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 
-const MatchHeader = () => {
+/**
+ * MatchHeader Component
+ *
+ * This component serves as the header for the match screen, allowing users
+ * to select an option (e.g., Mentor, Mentee, Hackathon Partner) from a picker.
+ * The header style dynamically changes based on the selected option to provide
+ * visual feedback with different shadow colors.
+ *
+ * @returns {JSX.Element} The MatchHeader component displaying a title and a picker for user selection.
+ */
+const MatchHeader = (): JSX.Element => {
   const selectedOption = useSelector(
     (state: RootState) => state.pickerReducer.selectedOption
   );

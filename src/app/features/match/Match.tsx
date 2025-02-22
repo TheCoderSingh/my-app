@@ -6,7 +6,34 @@ import { Education, Industry, Location, Work } from '@/src/constants/icons';
 import { ExternalPathString } from 'expo-router';
 import { User } from '../users/UsersSlice';
 
-const Match = ({ user }: { user: User }) => {
+/**
+ * Match Component
+ *
+ * This component displays a user's profile details, including their name, photo, work information,
+ * education, location, industries, bio, portfolio, skills, and contact links.
+ * It also provides match interaction buttons (yes/no) for connecting with the user.
+ *
+ * @component
+ * @param {Object} props - The props for the Match component.
+ * @param {User} props.user - The user object containing profile details such as name, bio, skills, and contact info.
+ *
+ * @returns {JSX.Element} The rendered Match component showcasing the user's profile with interaction buttons.
+ *
+ * @example
+ * const sampleUser = {
+ *   name: 'John Doe',
+ *   currentTitle: 'Software Engineer',
+ *   currentCompany: 'TechCorp',
+ *   education: [{ degree: 'B.Sc. in Computer Science', school: 'XYZ University' }],
+ *   location: 'Vancouver, Canada',
+ *   industries: ['Tech', 'AI'],
+ *   bio: 'Passionate about building scalable applications.',
+ *   website: 'https://johndoe.dev',
+ * };
+ *
+ * return <Match user={sampleUser} />;
+ */
+const Match = ({ user }: { user: User }): JSX.Element => {
   return (
     <View>
       {/* Name and picture */}
