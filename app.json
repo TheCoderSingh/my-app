@@ -1,16 +1,16 @@
 {
   "expo": {
-    "name": "my-app",
-    "slug": "my-app",
+    "name": "twiine",
+    "slug": "twiine",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "twiine",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.codersingh.myapp",
+      "bundleIdentifier": "com.codersingh.twiine",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
@@ -20,7 +20,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.codersingh.myapp"
+      "package": "com.codersingh.twiine"
     },
     "web": {
       "bundler": "metro",
