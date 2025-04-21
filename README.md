@@ -1,6 +1,6 @@
-# My App
+# Twiine
 
-**My App** is a professional networking app designed to help users build meaningful connections through matchmaking, fostering mentorship, and collaboration.
+**Twiine** is a professional networking app designed to help users build meaningful connections through matchmaking, fostering mentorship, and collaboration.
 
 ## Features
 
@@ -20,8 +20,8 @@
 To set up the project locally, clone this repository and run:
 
 ```bash
-git clone https://github.com/your-repo/my-app.git
-cd my-app
+git clone https://github.com/your-repo/twiine.git
+cd twiine
 npm install
 npm start
 ```
