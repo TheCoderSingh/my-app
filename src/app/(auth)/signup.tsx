@@ -4,18 +4,20 @@ import {
   Text,
   SafeAreaView,
   TextInput,
-  TouchableWithoutFeedback,
   Keyboard,
+  Pressable,
+  TouchableOpacity,
 } from 'react-native';
 import Button from '../features/button/Button';
 import { Link } from 'expo-router';
+import { handleLinkedInLogin } from '@/src/services/authService';
 
 const Signup = () => {
   return (
     <View>
       <SafeAreaView>
         <StatusBar style="dark" />
-        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <Pressable onPress={() => Keyboard.dismiss()}>
           <View className="pt-8 px-6">
             <View>
               <Text className="font-heading text-3xl">Get Started!</Text>
@@ -47,9 +49,9 @@ const Signup = () => {
                 <View>
                   <Text>F</Text>
                 </View>
-                <View>
+                <TouchableOpacity onPress={handleLinkedInLogin}>
                   <Text>L</Text>
-                </View>
+                </TouchableOpacity>
                 <View>
                   <Text>G</Text>
                 </View>
@@ -69,7 +71,7 @@ const Signup = () => {
               </Text>
             </View>
           </View>
-        </TouchableWithoutFeedback>
+        </Pressable>
       </SafeAreaView>
     </View>
   );
