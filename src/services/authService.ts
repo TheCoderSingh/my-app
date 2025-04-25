@@ -1,12 +1,26 @@
-import { openAuthSessionAsync } from 'expo-web-browser';
+import {
+  openAuthSessionAsync,
+  maybeCompleteAuthSession,
+} from 'expo-web-browser';
+import * as Linking from 'expo-linking';
+
+maybeCompleteAuthSession();
 
 export const handleLinkedInLogin = async () => {
   try {
-    const response = await fetch('http://172.20.10.11:3000/api/auth/linkedin');
-    const data = await response.json();
+    const redirectUri = Linking.createURL('oauth'); // e.g. twiine://oauth
+    const response = await fetch(
+      `${process.env.EXPO_PUBLIC_API_URL}/auth/linkedin`
+    );
+    const { authorization } = await response.json();
+    const result = await openAuthSessionAsync(authorization, redirectUri);
 
-    await openAuthSessionAsync(data.authorization);
-    // @TODO: Redirect user back to the app and complete this function
+    if (result.type === 'success' && result.url) {
+      const { queryParams } = Linking.parse(result.url);
+      console.log('Login Success: ', queryParams);
+    } else {
+      console.log('Login canceled or failed:', result);
+    }
   } catch (error) {
     console.error('Error during LinkedIn login:', error);
   }
