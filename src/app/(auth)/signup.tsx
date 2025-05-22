@@ -11,6 +11,7 @@ import {
 import Button from '../features/button/Button';
 import { Link } from 'expo-router';
 import { handleLinkedInLogin } from '@/src/services/authService';
+import SocialIcons from '../features/social-icons/SocialIcons';
 
 const Signup = () => {
   return (
@@ -35,7 +36,7 @@ const Signup = () => {
               />
             </View>
 
-            <View className="mt-20">
+            <View className="mt-15">
               <Button text="Enter" filled className="mb-10" />
 
               <View className="flex flex-row justify-center items-center mb-10">
@@ -45,23 +46,7 @@ const Signup = () => {
               </View>
 
               {/* Social icons go below */}
-              <View className="flex flex-row justify-center gap-16 mb-14">
-                <View>
-                  <Text>F</Text>
-                </View>
-                <TouchableOpacity onPress={handleLinkedInLogin}>
-                  <Text>L</Text>
-                </TouchableOpacity>
-                <View>
-                  <Text>G</Text>
-                </View>
-                <View>
-                  <Text>G</Text>
-                </View>
-                <View>
-                  <Text>A</Text>
-                </View>
-              </View>
+              <SocialIcons />
 
               <Text className="text-center text-[#666] mb-6">
                 Already have an account?{' '}
