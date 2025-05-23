@@ -6,11 +6,9 @@ import {
   TextInput,
   Keyboard,
   Pressable,
-  TouchableOpacity,
 } from 'react-native';
 import Button from '../features/button/Button';
 import { Link } from 'expo-router';
-import { handleLinkedInLogin } from '@/src/services/authService';
 import SocialIcons from '../features/social-icons/SocialIcons';
 
 const Signup = () => {

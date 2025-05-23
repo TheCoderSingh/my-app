@@ -25,3 +25,15 @@ export const handleLinkedInLogin = async () => {
     console.error('Error during LinkedIn login:', error);
   }
 };
+
+export const handleGoogleLogin = async () => {
+  // Login with Google
+};
+
+export const handleAppleLogin = async () => {
+  // Login with Apple
+};
+
+export const handleGithubLogin = async () => {
+  // Login with GitHub
+};
