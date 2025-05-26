@@ -3,8 +3,12 @@ import { StatusBar } from 'expo-status-bar';
 import LinkBar from '../features/link-bar/LinkBar';
 import images from '@/src/constants/images';
 import { Education, Industry, Location, Work } from '@/src/constants/icons';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 
 const profile = () => {
+  const user = useSelector((state: RootState) => state.currentUserReducer);
+
   return (
     <View>
       {/* Status bar */}
@@ -25,16 +29,10 @@ const profile = () => {
               <Text className="color-secondary-one font-heading text-lg uppercase">
                 MENTOR
               </Text>
-              <Text className="font-heading text-4xl mt-1">John Smith</Text>
+              <Text className="font-heading text-4xl mt-1">{user.name}</Text>
             </View>
             <View className="border-4 rounded-full border-secondary-one">
-              <Image
-                height={70}
-                width={70}
-                source={{
-                  uri: 'https://avatar.iran.liara.run/public/28',
-                }}
-              />
+              {/* <Image source={{ uri: user.profilePicture }} /> */}
             </View>
           </View>
 
