@@ -6,6 +6,7 @@ import {
 } from '@/src/services/authService';
 import { TouchableOpacity, View, Image } from 'react-native';
 import images from '@/src/constants/images';
+import { Link, Redirect } from 'expo-router';
 
 const SocialIcons = () => {
   return (
@@ -32,11 +33,13 @@ const SocialIcons = () => {
         />
       </TouchableOpacity>
       <TouchableOpacity className="p-2" onPress={handleGithubLogin}>
-        <Image
-          source={images.github}
-          className="w-10 h-10"
-          resizeMode="contain"
-        />
+        <Link href={'/(tabs)/profile'}>
+          <Image
+            source={images.github}
+            className="w-10 h-10"
+            resizeMode="contain"
+          />
+        </Link>
       </TouchableOpacity>
     </View>
   );
