@@ -5,6 +5,10 @@ import {
 import * as Linking from 'expo-linking';
 import { setUserData } from '@/src/app/features/users/CurrentUserSlice';
 import { store } from '../app/store/store';
+import {
+  signInAsync,
+  AppleAuthenticationScope,
+} from 'expo-apple-authentication';
 
 maybeCompleteAuthSession();
 
@@ -54,7 +58,38 @@ export const handleGoogleLogin = async () => {
 };
 
 export const handleAppleLogin = async () => {
-  // Login with Apple
+  // @TODO: Send login data to backend
+  try {
+    const credential = await signInAsync({
+      requestedScopes: [
+        AppleAuthenticationScope.FULL_NAME,
+        AppleAuthenticationScope.EMAIL,
+      ],
+    });
+    if (credential) {
+      // Store user data from Apple authentication
+      const userData: any = {
+        id: credential.user,
+        email: credential.email,
+        name:
+          credential.fullName !== null
+            ? `${credential.fullName?.givenName || ''} ${credential.fullName?.familyName || ''}`.trim()
+            : null,
+      };
+      store.dispatch(setUserData(userData));
+      console.log(userData);
+    }
+  } catch (error) {
+    if (
+      error instanceof Error &&
+      'code' in error &&
+      error.code === 'ERR_REQUEST_CANCELED'
+    ) {
+      console.log('User canceled Apple sign-in');
+    } else {
+      console.error('Error during Apple sign-in:', error);
+    }
+  }
 };
 
 export const handleGithubLogin = async () => {
