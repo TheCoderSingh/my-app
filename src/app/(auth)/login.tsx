@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import Button from '../features/button/Button';
 import { Link } from 'expo-router';
+import SocialIcons from '../features/social-icons/SocialIcons';
 
 const Login = () => {
   return (
@@ -40,7 +41,7 @@ const Login = () => {
             </Text> */}
             </View>
 
-            <View className="mt-20">
+            <View className="mt-15">
               <Button text="Enter" filled className="mb-10" />
 
               <View className="flex flex-row justify-center items-center mb-10">
@@ -50,23 +51,7 @@ const Login = () => {
               </View>
 
               {/* Social icons go below */}
-              <View className="flex flex-row justify-center gap-16 mb-14">
-                <View>
-                  <Text>F</Text>
-                </View>
-                <View>
-                  <Text>L</Text>
-                </View>
-                <View>
-                  <Text>G</Text>
-                </View>
-                <View>
-                  <Text>G</Text>
-                </View>
-                <View>
-                  <Text>A</Text>
-                </View>
-              </View>
+              <SocialIcons />
 
               <Text className="text-center text-[#666] mb-6">
                 Don't have an account?{' '}
