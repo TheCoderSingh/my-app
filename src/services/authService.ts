@@ -5,12 +5,28 @@ import {
 import * as Linking from 'expo-linking';
 import { setUserData } from '@/src/app/features/users/CurrentUserSlice';
 import { store } from '../app/store/store';
+import {
+  signInAsync,
+  AppleAuthenticationScope,
+} from 'expo-apple-authentication';
+import { router, Router, useRouter } from 'expo-router';
+import {
+  GoogleSignin,
+  isErrorWithCode,
+  isSuccessResponse,
+  statusCodes,
+} from '@react-native-google-signin/google-signin';
+import { Alert } from 'react-native';
+import * as AuthSession from 'expo-auth-session';
 
 maybeCompleteAuthSession();
 
-export const handleLinkedInLogin = async () => {
+export const handleLinkedInLogin = async (router: Router) => {
   try {
+    const router = useRouter();
+
     const redirectUri = Linking.createURL('oauth'); // e.g. twiine://oauth
+
     const response = await fetch(
       `${process.env.EXPO_PUBLIC_API_URL}/auth/linkedin`
     );
@@ -34,6 +50,7 @@ export const handleLinkedInLogin = async () => {
             const parsedUser = JSON.parse(cleanedUserStr);
 
             store.dispatch(setUserData(parsedUser));
+            router.replace('/profile');
           } catch (parseError) {
             console.error('Error parsing user data:', parseError);
           }
@@ -50,13 +67,115 @@ export const handleLinkedInLogin = async () => {
 };
 
 export const handleGoogleLogin = async () => {
-  // Login with Google
+  /* Uncomment once built | Does not work on Expo Go */
+  // GoogleSignin.configure({
+  //   webClientId:
+  //     'YOUR_GOOGLE_WEB_CLIENT_ID.apps.googleusercontent.com',
+  // });
+  // try {
+  //   await GoogleSignin.hasPlayServices();
+  //   const userInfo = await GoogleSignin.signIn();
+  //   if (isSuccessResponse(userInfo)) {
+  //     console.log('User Info:', userInfo);
+  //     // Handle user info, e.g., dispatch to Redux or navigate
+  //   } else {
+  //     console.log('Sign-in was canceled or failed:', userInfo);
+  //   }
+  // } catch (error) {
+  //   if (isErrorWithCode(error)) {
+  //     switch (error.code) {
+  //       case statusCodes.SIGN_IN_CANCELLED:
+  //         console.log('User canceled the sign-in flow');
+  //         break;
+  //       case statusCodes.IN_PROGRESS:
+  //         console.log('Sign-in is in progress');
+  //         break;
+  //       case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
+  //         console.log('Play services are not available');
+  //         break;
+  //       default:
+  //         console.error('An error occurred during sign-in:', error);
+  //     }
+  //   }
+  // }
 };
 
 export const handleAppleLogin = async () => {
-  // Login with Apple
+  try {
+    const credential = await signInAsync({
+      requestedScopes: [
+        AppleAuthenticationScope.FULL_NAME,
+        AppleAuthenticationScope.EMAIL,
+      ],
+    });
+    if (credential) {
+      const userData: any = {
+        id: credential.user,
+        email: credential.email,
+        name:
+          credential.fullName !== null
+            ? `${credential.fullName?.givenName || ''} ${credential.fullName?.familyName || ''}`.trim()
+            : null,
+        identityToken: credential.identityToken,
+      };
+
+      store.dispatch(setUserData(userData));
+
+      // @TODO: Send login data to backend
+    }
+  } catch (error) {
+    if (
+      error instanceof Error &&
+      'code' in error &&
+      error.code === 'ERR_REQUEST_CANCELED'
+    ) {
+      console.log('User canceled Apple sign-in');
+    } else {
+      console.error('Error during Apple sign-in:', error);
+    }
+  }
 };
 
+const GITHUB_CLIENT_ID = process.env.EXPO_PUBLIC_GITHUB_CLIENT_ID!;
+const API_URL = process.env.EXPO_PUBLIC_API_URL!;
+
 export const handleGithubLogin = async () => {
-  // Login with GitHub
+  try {
+    // For Expo Go and web, this will be https://auth.expo.io/@codersingh/twiine
+    const redirectUri = AuthSession.makeRedirectUri();
+
+    const authUrl = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&scope=read:user%20user:email&redirect_uri=${encodeURIComponent(
+      redirectUri
+    )}`;
+
+    const result = await openAuthSessionAsync(authUrl, redirectUri);
+
+    if (result.type === 'success' && result.url) {
+      const url = new URL(result.url);
+      const code = url.searchParams.get('code');
+
+      if (!code) throw new Error('No code returned from GitHub');
+
+      // // Send the code to your backend
+      // const response = await fetch(`${API_URL}/auth/github`, {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ code }),
+      // });
+
+      // if (!response.ok) throw new Error('Backend login failed');
+
+      // const { user, tokens } = await response.json();
+      // console.log('GitHub user:', user);
+
+      router.replace('/(tabs)/home');
+    } else if (result.type === 'dismiss') {
+      Alert.alert('GitHub login cancelled');
+    } else {
+      throw new Error('GitHub login failed');
+    }
+  } catch (err: any) {
+    console.error('GitHub login error:', err);
+    Alert.alert('Login error', err.message || 'Something went wrong');
+  }
 };

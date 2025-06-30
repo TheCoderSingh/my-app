@@ -1,12 +1,13 @@
 import {
   handleAppleLogin,
-  handleGithubLogin,
   handleGoogleLogin,
   handleLinkedInLogin,
+  handleGithubLogin,
 } from '@/src/services/authService';
 import { TouchableOpacity, View, Image } from 'react-native';
 import images from '@/src/constants/images';
-import { Link, Redirect } from 'expo-router';
+
+import { router } from 'expo-router';
 
 const SocialIcons = () => {
   return (
@@ -18,7 +19,10 @@ const SocialIcons = () => {
           resizeMode="contain"
         />
       </TouchableOpacity>
-      <TouchableOpacity className="p-2" onPress={handleLinkedInLogin}>
+      <TouchableOpacity
+        className="p-2"
+        onPress={() => handleLinkedInLogin(router)}
+      >
         <Image
           source={images.linkedin}
           className="w-12 h-10"
@@ -33,13 +37,11 @@ const SocialIcons = () => {
         />
       </TouchableOpacity>
       <TouchableOpacity className="p-2" onPress={handleGithubLogin}>
-        <Link href={'/(tabs)/profile'}>
-          <Image
-            source={images.github}
-            className="w-10 h-10"
-            resizeMode="contain"
-          />
-        </Link>
+        <Image
+          source={images.github}
+          className="w-10 h-10"
+          resizeMode="contain"
+        />
       </TouchableOpacity>
     </View>
   );

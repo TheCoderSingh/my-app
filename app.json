@@ -14,7 +14,8 @@
       "bundleIdentifier": "com.codersingh.twiine",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
-      }
+      },
+      "usesAppleSignIn": true
     },
     "android": {
       "adaptiveIcon": {
@@ -38,7 +39,9 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      "expo-apple-authentication",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true
@@ -49,7 +52,8 @@
       },
       "eas": {
         "projectId": "7558007c-6937-48e1-a995-28eada0e09b9"
-      }
+      },
+      "googleClientId": "627693758029-cct7t7qc18ice4t1t16fjaheim20iao2.apps.googleusercontent.com"
     }
   }
 }
