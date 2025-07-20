@@ -10,8 +10,14 @@ import {
 import Button from '../features/button/Button';
 import { Link } from 'expo-router';
 import SocialIcons from '../features/social-icons/SocialIcons';
+import { useSelector } from 'react-redux';
 
 const Signup = () => {
+  // Get the auth error from Redux state
+  const authError = useSelector(
+    (state: any) => state.currentUserReducer.authError
+  );
+
   return (
     <View>
       <SafeAreaView>
@@ -52,6 +58,17 @@ const Signup = () => {
                   Login
                 </Link>
               </Text>
+
+              {/* Show Errors go below */}
+              {authError && (
+                <View
+                  className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4"
+                  role="alert"
+                >
+                  <Text className="font-bold">Oops!</Text>
+                  <Text>{authError}</Text>
+                </View>
+              )}
             </View>
           </View>
         </Pressable>

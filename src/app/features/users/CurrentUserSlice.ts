@@ -11,11 +11,13 @@ interface CurrentUser {
   website?: string;
   skills?: string[];
   bio?: string;
+  authError?: string; // <-- Add this line
 }
 
 const initialState: CurrentUser = {
   name: '',
   email: '',
+  authError: undefined, // <-- Add this line
 };
 
 const currentUserSlice = createSlice({
@@ -28,8 +30,17 @@ const currentUserSlice = createSlice({
     clearUserData() {
       return initialState;
     },
+    setAuthError(state, action: PayloadAction<string>) {
+      // <-- Add this reducer
+      return { ...state, authError: action.payload };
+    },
+    clearAuthError(state) {
+      // <-- Optional: clear error
+      return (state.authError = undefined);
+    },
   },
 });
 
-export const { setUserData, clearUserData } = currentUserSlice.actions;
+export const { setUserData, clearUserData, setAuthError, clearAuthError } =
+  currentUserSlice.actions;
 export default currentUserSlice.reducer;

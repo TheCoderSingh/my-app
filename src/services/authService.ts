@@ -18,6 +18,7 @@ import {
 } from '@react-native-google-signin/google-signin';
 import { Alert } from 'react-native';
 import * as AuthSession from 'expo-auth-session';
+import { setItemAsync } from 'expo-secure-store';
 
 maybeCompleteAuthSession();
 
@@ -51,6 +52,9 @@ export const handleLinkedInLogin = async (router: Router) => {
 
             store.dispatch(setUserData(parsedUser));
             router.replace('/profile');
+
+            // Set local storage
+            await setItemAsync('user', JSON.stringify(parsedUser));
           } catch (parseError) {
             console.error('Error parsing user data:', parseError);
           }
@@ -70,7 +74,8 @@ export const handleGoogleLogin = async () => {
   /* Uncomment once built | Does not work on Expo Go */
   // GoogleSignin.configure({
   //   webClientId:
-  //     'YOUR_GOOGLE_WEB_CLIENT_ID.apps.googleusercontent.com',
+  //     '627693758029-cct7t7qc18ice4t1t16fjaheim20iao2.apps.googleusercontent.com',
+  //   iosClientId: '627693758029-jb11424da87kfnvk46bbcje9skooinud.apps.googleusercontent.com'
   // });
   // try {
   //   await GoogleSignin.hasPlayServices();
@@ -119,20 +124,48 @@ export const handleAppleLogin = async () => {
         identityToken: credential.identityToken,
       };
 
-      store.dispatch(setUserData(userData));
-
       // @TODO: Send login data to backend
+      const response = await fetch(`${API_URL}/auth/apple`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId: userData.id,
+          email: userData.email,
+          name: userData.name,
+          identityToken: userData.identityToken,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorMsg = 'Failed to log in with Apple';
+        store.dispatch({ type: 'currentUser/setAuthError', payload: errorMsg });
+        throw new Error(errorMsg);
+      }
+      const data = await response.json();
+      console.log('Apple login response:', data);
+
+      store.dispatch(setUserData(userData));
+      store.dispatch({ type: 'currentUser/clearAuthError' });
+      router.replace('/profile');
     }
   } catch (error) {
+    let errorMsg = 'Error during Apple sign-in';
+
     if (
       error instanceof Error &&
       'code' in error &&
-      error.code === 'ERR_REQUEST_CANCELED'
+      (error as any).code === 'ERR_REQUEST_CANCELED'
     ) {
-      console.log('User canceled Apple sign-in');
+      errorMsg = 'User canceled Apple sign-in';
+      console.log(errorMsg);
     } else {
-      console.error('Error during Apple sign-in:', error);
+      if (error instanceof Error) {
+        errorMsg = 'Error during Apple sign-in: ' + error.message;
+      }
     }
+    store.dispatch({ type: 'currentUser/setAuthError', payload: errorMsg });
   }
 };
 
@@ -157,16 +190,16 @@ export const handleGithubLogin = async () => {
       if (!code) throw new Error('No code returned from GitHub');
 
       // // Send the code to your backend
-      // const response = await fetch(`${API_URL}/auth/github`, {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ code }),
-      // });
+      const response = await fetch(`${API_URL}/auth/github`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code }),
+      });
 
-      // if (!response.ok) throw new Error('Backend login failed');
+      if (!response.ok) throw new Error('Backend login failed');
 
-      // const { user, tokens } = await response.json();
-      // console.log('GitHub user:', user);
+      const { user, tokens } = await response.json();
+      console.log('GitHub user:', user);
 
       router.replace('/(tabs)/home');
     } else if (result.type === 'dismiss') {
