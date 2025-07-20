@@ -1,11 +1,42 @@
 import { SafeAreaView, Text, View } from 'react-native';
 import '../../global.css';
-import { Redirect } from 'expo-router';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'expo-router';
+import * as SecureStore from 'expo-secure-store';
+import { useDispatch } from 'react-redux';
+import { setUserData } from './features/users/CurrentUserSlice'; // <-- adjust this path!
 import React from 'react';
 import Button from './features/button/Button';
 import { StatusBar } from 'expo-status-bar';
 
 export default function Index() {
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const checkSession = async () => {
+      try {
+        const userData = await SecureStore.getItemAsync('user');
+        
+        if (userData) {
+          const parsedUser = JSON.parse(userData);
+          
+          dispatch(setUserData(parsedUser));
+          router.replace('/profile');
+        }
+      } catch (err) {
+        console.error('Error loading session:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkSession();
+  }, []);
+
+  if (loading) return null;
+
   return (
     <React.Fragment>
       <SafeAreaView>
