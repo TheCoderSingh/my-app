@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import pickerReducer from '../features/picker/PickerSlice';
+import categoryReducer from '../features/category/CategorySlice';
 import usersReducer from '../features/users/UsersSlice';
 import currentUserReducer from '../features/users/CurrentUserSlice';
 
 export const store = configureStore({
   reducer: {
-    pickerReducer,
+    categoryReducer,
     usersReducer,
     currentUserReducer,
   },

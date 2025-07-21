@@ -1,22 +1,23 @@
-import { View, Text } from 'react-native';
-import Picker from '../picker/Picker';
+import { View, Text, ScrollView } from 'react-native';
 import { options } from '@/src/utils/mockData';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import { setSelectedOption } from '../category/CategorySlice';
+import Category from '../category/Category';
 
 /**
  * MatchHeader Component
  *
  * This component serves as the header for the match screen, allowing users
- * to select an option (e.g., Mentor, Mentee, Hackathon Partner) from a picker.
+ * to select an option (e.g., Mentor, Mentee, Hackathon Partner) from a category.
  * The header style dynamically changes based on the selected option to provide
  * visual feedback with different shadow colors.
  *
- * @returns {JSX.Element} The MatchHeader component displaying a title and a picker for user selection.
+ * @returns {JSX.Element} The MatchHeader component displaying a title and a category for user selection.
  */
 const MatchHeader = (): JSX.Element => {
   const selectedOption = useSelector(
-    (state: RootState) => state.pickerReducer.selectedOption
+    (state: RootState) => state.categoryReducer.selectedOption
   );
 
   return (
@@ -35,13 +36,15 @@ const MatchHeader = (): JSX.Element => {
       }}
     >
       <View>
-        <Text className="text-xl text-center font-body tracking-[-1px] py-1">
+        <Text className="text-lg font-body tracking-[-1px] ml-4">
           Match with a
         </Text>
       </View>
-      <View className="w-[250px]">
-        <Picker textColor="#313144" options={options} />
-      </View>
+      <ScrollView horizontal>
+        {options.map((option) => (
+          <Category option={option} key={option} />
+        ))}
+      </ScrollView>
     </View>
   );
 };

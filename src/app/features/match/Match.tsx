@@ -89,19 +89,10 @@ const Match = ({ user }: { user: User }): JSX.Element => {
 
       {/* Bio */}
       <View>
-        <Text className="font-body text-xl mt-6">A little about me...</Text>
+        <Text className="font-body text-xl mt-6">About</Text>
         <Text className="font-body mt-2 leading-6 tracking-tight">
           {user.bio}
         </Text>
-      </View>
-
-      {/* Portfolio */}
-      <View className="flex flex-row justify-between items-center mt-3">
-        <Text className="font-body">Portfolio:</Text>
-        <LinkBar
-          href={user.website as ExternalPathString}
-          text={user.website || ''}
-        />
       </View>
 
       {/* Skills */}
@@ -123,17 +114,28 @@ const Match = ({ user }: { user: User }): JSX.Element => {
               <Text className="font-body text-sm mt-2">Adobe XD</Text>
             </View>
             <View className="flex flex-col items-center">
-              <Image source={images.github} height={55} width={55} />
+              <Image source={images.git} height={55} width={55} />
               <Text className="font-body text-sm mt-2">GitHub</Text>
             </View>
           </View>
         </View>
       </View>
 
+
+      {/* Portfolio */}
+      <View className="flex flex-row justify-between items-center mt-3">
+        <Text className="font-body">Portfolio:</Text>
+        <LinkBar
+          href={user.website as ExternalPathString}
+          text={user.website || ''}
+        />
+      </View>
+
+
       {/* Contact */}
       <View className="mt-8 px-6">
         <View className="flex flex-row items-center justify-center gap-3">
-          <Image source={images.linkedin} />
+          <Image source={images.figma} />
           <LinkBar
             href="https://linkedin.com/in/john-smith"
             text="linkedin.com/in/john-smith"

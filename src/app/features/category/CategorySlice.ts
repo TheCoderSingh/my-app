@@ -1,37 +1,37 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 /**
- * Interface representing the Picker's state.
+ * Interface representing the Category's state.
  *
- * @property {string} selectedOption - The currently selected option in the Picker.
+ * @property {string} selectedOption - The currently selected option in the Category.
  */
-interface PickerState {
+interface CategoryState {
   selectedOption: string;
 }
 
 /**
- * Initial state for the Picker component.
+ * Initial state for the Category component.
  *
- * @property {string} selectedOption - The default selected option in the Picker.
+ * @property {string} selectedOption - The default selected option in the Category.
  */
-const initialState: PickerState = {
+const initialState: CategoryState = {
   selectedOption: 'Mentor',
 };
 
 /**
- * Picker Slice
+ * Category Slice
  *
- * A Redux slice for managing the state of the selected option in the Picker component.
+ * A Redux slice for managing the state of the selected option in the Category component.
  * This slice handles updating the selected option using Redux Toolkit's `createSlice`.
  */
-const pickerSlice = createSlice({
-  name: 'picker',
+const categorySlice = createSlice({
+  name: 'category',
   initialState,
   reducers: {
     /**
      * Updates the selected option in the state.
      *
-     * @param {PickerState} state - The current state of the Picker.
+     * @param {CategoryState} state - The current state of the Category.
      * @param {PayloadAction<string>} action - The action containing the new selected option.
      */
     setSelectedOption: (state, action: PayloadAction<string>) => {
@@ -45,6 +45,6 @@ const pickerSlice = createSlice({
  *
  * @returns {PayloadAction<string>} The action to set the selected option.
  */
-export const { setSelectedOption } = pickerSlice.actions;
+export const { setSelectedOption } = categorySlice.actions;
 
-export default pickerSlice.reducer;
+export default categorySlice.reducer;
