@@ -9,6 +9,8 @@ const images = {
   linkedin: require('@/assets/images/linkedin.png'),
   google: require('@/assets/images/google.png'),
   apple: require('@/assets/images/apple.png'),
+  linkedinDark: require('@/assets/images/linkedinDark.png'),
+  githubDark: require('@/assets/images/githubDark.png'),
 };
 
 export default images;

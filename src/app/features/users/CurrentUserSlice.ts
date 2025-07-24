@@ -8,10 +8,16 @@ interface CurrentUser {
   currentCompany?: string;
   location?: string;
   linkedinUrl?: string;
+  githubUrl?: string;
   website?: string;
   skills?: string[];
+  industries?: string[];
   bio?: string;
   authError?: string; // <-- Add this line
+  education?: {
+    school?: string;
+    degree?: string;
+  }[];
 }
 
 const initialState: CurrentUser = {

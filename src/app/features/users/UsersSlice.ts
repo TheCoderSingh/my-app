@@ -30,6 +30,8 @@ export interface User {
   bio: string;
   connectionPreferences: string[];
   learningGoals: string[];
+  githubUrl: string | null;
+  linkedinUrl: string | null;
 }
 
 const usersSlice = createSlice({

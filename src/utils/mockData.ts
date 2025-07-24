@@ -13,7 +13,7 @@ export const users = [
     gender: 'Male',
     location: 'Vancouver, Canada',
     hometown: 'Toronto, Canada',
-    website: 'https://johndoe.dev',
+    website: 'johndoe.dev',
     role: 'Software Engineer',
     currentTitle: 'Senior Developer',
     previousTitles: ['Junior Developer', 'Intern'],
@@ -33,6 +33,8 @@ export const users = [
     bio: 'Passionate developer focused on building scalable web applications.',
     connectionPreferences: ['Mentorship', 'Networking'],
     learningGoals: ['Master TypeScript', 'Improve system design skills'],
+    githubUrl:'thecodersingh',
+    linkedinUrl: 'johndoe',
   },
   {
     email: 'jane.smith@example.com',
@@ -61,5 +63,7 @@ export const users = [
     bio: 'Experienced product manager with a track record of successful product launches.',
     connectionPreferences: ['Collaboration', 'Knowledge Sharing'],
     learningGoals: ['Develop data analysis skills', 'Understand AI trends'],
+    githubUrl:'thecodersingh',
+    linkedinUrl: 'johndoe',
   },
 ];

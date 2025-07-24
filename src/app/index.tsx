@@ -18,10 +18,10 @@ export default function Index() {
     const checkSession = async () => {
       try {
         const userData = await SecureStore.getItemAsync('user');
-        
+
         if (userData) {
           const parsedUser = JSON.parse(userData);
-          
+
           dispatch(setUserData(parsedUser));
           router.replace('/profile');
         }
