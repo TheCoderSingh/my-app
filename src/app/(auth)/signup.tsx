@@ -7,11 +7,12 @@ import {
   Keyboard,
   Pressable,
 } from 'react-native';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Button from '../features/button/Button';
 import { Link } from 'expo-router';
 import SocialIcons from '../features/social-icons/SocialIcons';
 import { useSelector } from 'react-redux';
+import CountryPicker, { Country, CountryCode, FlagType, getAllCountries, getCallingCode } from 'react-native-country-picker-modal';
 
 const Signup = () => {
   const authError = useSelector(
@@ -19,14 +20,35 @@ const Signup = () => {
   );
 
   const [input, setInput] = useState('');
-  const [isPhone, setIsPhone] = useState(false);
-  const [countryCode, setCountryCode] = useState('+1');
+  const [countryCode, setCountryCode] = useState<CountryCode>('CA');
+  const [callingCode, setCallingCode] = useState('+1');
 
-  const handleChange = (text: string) => {
+  // Cache the country list
+  const countryListRef = useRef<Country[]>([]);
+  useEffect(() => {
+    (async () => {
+      try {
+        const countries = await getAllCountries(FlagType.EMOJI);
+        countryListRef.current = countries;
+      } catch (e) {
+        console.warn('Failed to load countries:', e);
+      }
+    })();
+  }, []);
+
+  const onSelect = (country: Country) => {
+    setCountryCode(country.cca2);
+    setCallingCode(`+${country.callingCode[0]}`);
+  };
+
+  const handleChange = async (text: string) => {
+    // If the input is empty, reset the input state
+    if (text === '') {
+      setInput('');
+      return;
+    }
+
     setInput(text);
-    
-    const digitsOnly = text.replace(/[^0-9]/g, ''); // Remove non-numeric characters
-    setIsPhone(/^\d{1,}$/.test(digitsOnly)); // Check if input is numeric and at least 1 digit
   };
 
   return (
@@ -40,38 +62,37 @@ const Signup = () => {
               <Text className="font-body text-xl pt-2">Create an account</Text>
             </View>
 
-            <View className="my-20">
-              {isPhone ? (
-                <View className="flex-row gap-3">
-                  <TextInput
-                    value={countryCode}
-                    onChangeText={setCountryCode}
-                    keyboardType="phone-pad"
-                    className="border border-[#1A6D66] p-4 rounded-[10px] w-[80px] text-center placeholder:text-[#aaa]"
-                    placeholder="+1"
-                  />
-                  <TextInput
-                    value={input}
-                    onChangeText={handleChange}
-                    keyboardType="phone-pad"
-                    autoCapitalize="none"
-                    autoFocus
-                    autoComplete="tel"
-                    className="border border-[#1A6D66] flex-1 p-4 rounded-[10px] placeholder:text-[#aaa]"
-                  />
-                </View>
-              ) : (
-                <TextInput
-                  placeholder="Enter your email or phone number"
-                  value={input}
-                  onChangeText={handleChange}
-                  keyboardType="email-address"
-                  autoCapitalize="none"
-                  autoFocus
-                  autoComplete="email"
-                  className="border border-[#1A6D66] w-full p-4 rounded-[10px] placeholder:text-[#aaa]"
-                />
-              )}
+            <View className="my-20 flex-row items-center border border-[#1A6D66] rounded-[10px] px-3">
+              <CountryPicker
+                countryCode={countryCode}
+                withCallingCode
+                withFilter
+                withFlag
+                withEmoji
+                onSelect={onSelect}
+                containerButtonStyle={{
+                  marginRight: 8,
+                  backgroundColor: 'transparent',
+                  paddingVertical: 0,
+                  paddingHorizontal: 0,
+                  borderWidth: 0,
+                }}
+              />
+              <Text style={{ marginRight: 8, fontSize: 16 }}>{callingCode}</Text>
+              <TextInput
+              style={{ flex: 1, paddingVertical: 16 }}
+              placeholder="Enter your phone number"
+              value={input}
+              onChangeText={(text) => {
+                const numericOnly = text.replace(/\D/g, ''); // removes everything except digits
+                handleChange(numericOnly);
+              }}
+              keyboardType="phone-pad"
+              autoCapitalize="none"
+              autoFocus
+              autoComplete="tel"
+              className="flex-1 placeholder:text-[#aaa]"
+              />
             </View>
 
             <View className="mt-15">
