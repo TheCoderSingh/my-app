@@ -1,3 +1,4 @@
+import { handleLogout } from '@/src/services/authService';
 import { Link } from 'expo-router';
 import { Text, SafeAreaView, View, TouchableOpacity } from 'react-native';
 
@@ -9,12 +10,15 @@ const settings = () => {
           Settings are under construction—stay tuned!
         </Text>
 
-        <TouchableOpacity className="mt-4 bg-primary-two px-6 py-3 rounded-full">
-          <Link href={'/(tabs)/home'}>
-            <Text className="text-white text-center font-body">
-              Find People
-            </Text>
-          </Link>
+        {/* Temporary logout */}
+        <TouchableOpacity
+          className="mt-4 bg-primary-two px-6 py-3 rounded-full"
+          onPress={() => {
+            handleLogout();
+          }}
+        >
+          <Text className="text-white text-center font-body">Logout</Text>
+          {/* </Link> */}
         </TouchableOpacity>
       </SafeAreaView>
     </View>

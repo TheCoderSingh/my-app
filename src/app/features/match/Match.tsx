@@ -121,7 +121,6 @@ const Match = ({ user }: { user: User }): JSX.Element => {
         </View>
       </View>
 
-
       {/* Portfolio */}
       <View className="flex flex-row justify-between items-center mt-3">
         <Text className="font-body">Portfolio:</Text>
@@ -130,7 +129,6 @@ const Match = ({ user }: { user: User }): JSX.Element => {
           text={user.website || ''}
         />
       </View>
-
 
       {/* Contact */}
       <View className="mt-8 px-6">

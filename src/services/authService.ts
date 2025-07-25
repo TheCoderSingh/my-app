@@ -212,3 +212,18 @@ export const handleGithubLogin = async () => {
     Alert.alert('Login error', err.message || 'Something went wrong');
   }
 };
+
+export const handleLogout = async () => {
+  try {
+    // Clear user data from Redux store
+    store.dispatch({ type: 'currentUser/clearUserData' });
+
+    // Clear local storage
+    await setItemAsync('user', '');
+
+    // Redirect to home or login page
+    router.replace('/(auth)/login');
+  } catch (error) {
+    console.error('Error during logout:', error);
+  }
+};
