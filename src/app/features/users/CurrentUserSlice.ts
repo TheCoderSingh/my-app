@@ -12,6 +12,7 @@ interface CurrentUser {
   skills?: string[];
   bio?: string;
   authError?: string; // <-- Add this line
+  phoneNumber?: string;
 }
 
 const initialState: CurrentUser = {
@@ -38,9 +39,12 @@ const currentUserSlice = createSlice({
       // <-- Optional: clear error
       return (state.authError = undefined);
     },
+    setPhoneNumber(state, action: PayloadAction<string>) {
+      state.phoneNumber = action.payload;
+    },
   },
 });
 
-export const { setUserData, clearUserData, setAuthError, clearAuthError } =
+export const { setUserData, clearUserData, setAuthError, clearAuthError, setPhoneNumber } =
   currentUserSlice.actions;
 export default currentUserSlice.reducer;

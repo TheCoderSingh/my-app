@@ -11,10 +11,13 @@ import { useState, useRef, useEffect } from 'react';
 import Button from '../features/button/Button';
 import { Link } from 'expo-router';
 import SocialIcons from '../features/social-icons/SocialIcons';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setPhoneNumber } from '../features/users/CurrentUserSlice';
+import { router } from 'expo-router';
 import CountryPicker, { Country, CountryCode, FlagType, getAllCountries, getCallingCode } from 'react-native-country-picker-modal';
 
 const Signup = () => {
+  const dispatch = useDispatch();
   const authError = useSelector(
     (state: any) => state.currentUserReducer.authError
   );
@@ -100,7 +103,10 @@ const Signup = () => {
                 text="Continue"
                 filled
                 className="mb-10"
-                href={'/(auth)/verify'}
+                onPress={() => {
+                  dispatch(setPhoneNumber(`${callingCode}${input}`));
+                  router.push('/(auth)/verify');
+                }}
               />
               
               <View className="flex flex-row justify-center items-center mb-10">

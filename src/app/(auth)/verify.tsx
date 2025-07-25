@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { StatusBar } from 'expo-status-bar';
 import {
   View,
@@ -11,6 +13,16 @@ import Button from '../features/button/Button';
 import { Link } from 'expo-router';
 
 const Verify = () => {
+  const phoneNumber = useSelector((state: any) => state.currentUserReducer.phoneNumber);
+  const [counter, setCounter] = useState(30);
+
+  useEffect(() => {
+    if (counter > 0) {
+      const timer = setTimeout(() => setCounter(counter - 1), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [counter]);
+  
   return (
     <View>
       <SafeAreaView>
@@ -22,8 +34,7 @@ const Verify = () => {
                 Verify your email or number
               </Text>
               <Text className="font-body text-lg pt-2 leading-8">
-                Please enter the verification code sent to: emailtest@gmail.com
-                or +234 810 123 4567
+                Please enter the verification code sent to: {phoneNumber ?? 'your number'}.
               </Text>
             </View>
 
@@ -41,9 +52,9 @@ const Verify = () => {
                 ))}
             </View>
             <View className="mt-5">
-              <Link href={'/'}>
+              <Link href={'/(auth)/signup'}>
                 <Text className="text-[#1A6D66] text-center mb-10 underline">
-                  Edit email or number
+                  Edit phone number
                 </Text>
               </Link>
             </View>
@@ -53,8 +64,13 @@ const Verify = () => {
             </View>
 
             <View className="flex items-center mt-20">
-              <Text className="text-[#1A6D66] text-xl">Resend in 00:28</Text>
-              <Button href="/" text="Resend Code" />
+              {counter > 0 ? (
+                <Text className="text-[#1A6D66] text-xl">
+                  Resend in 00:{counter < 10 ? `0${counter}` : counter}
+                </Text>
+              ) : (
+                <Button onPress={() => setCounter(30)} href="/" text="Resend Code" />
+              )}
             </View>
           </View>
         </TouchableWithoutFeedback>
