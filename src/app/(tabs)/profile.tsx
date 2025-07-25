@@ -4,7 +4,7 @@ import LinkBar from '../features/link-bar/LinkBar';
 import images from '@/src/constants/images';
 import { Education, Industry, Location, Work } from '@/src/constants/icons';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store/store';
+import { RootState } from '../../store/store';
 
 const profile = () => {
   const user = useSelector((state: RootState) => state.currentUserReducer);

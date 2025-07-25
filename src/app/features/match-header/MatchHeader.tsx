@@ -1,7 +1,7 @@
 import { View, Text, ScrollView } from 'react-native';
 import { options } from '@/src/utils/mockData';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import { RootState } from '../../../store/store';
 import { setSelectedOption } from '../category/CategorySlice';
 import Category from '../category/Category';
 

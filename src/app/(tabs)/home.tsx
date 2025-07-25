@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import MatchHeader from '../features/match-header/MatchHeader';
 import Match from '../features/match/Match';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store/store';
+import { RootState } from '../../store/store';
 
 const home = () => {
   const users = useSelector((state: RootState) => state.usersReducer.users);

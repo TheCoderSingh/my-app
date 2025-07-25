@@ -4,7 +4,7 @@ import {
 } from 'expo-web-browser';
 import * as Linking from 'expo-linking';
 import { setUserData } from '@/src/app/features/users/CurrentUserSlice';
-import { store } from '../app/store/store';
+import { store } from '../store/store';
 import {
   signInAsync,
   AppleAuthenticationScope,
